@@ -3,3 +3,5 @@ flask_env
 *.swp
 *.swo
 *.swn
+__pycache__
+*.pyc
