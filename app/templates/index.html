@@ -4,5 +4,16 @@
 	</head>
 	<body>
 		<h1>Hello, {{ user.nickname }}!</h1>
+
+		<p>This is some content, things of the form { { allo } } (except no spaces
+		between the '{,}') are replaced by the value of keyword arguments to the
+		render_template function.</p>
+
+		<p>For example, this : {{example}} is the value of the keyword argument
+		example.</p>
+
+		<p>Double curly braces through argument substitution : {{double_curly}}
+		</p>
+
 	</body>
 </html>
