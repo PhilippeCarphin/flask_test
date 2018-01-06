@@ -5,3 +5,4 @@ flask_env
 *.swn
 __pycache__
 *.pyc
+.idea
