@@ -1,4 +1,14 @@
 #!/bin/sh
+###############################################################################
+# Setup variables
+###############################################################################
+VENV=flask_env
+PYTHON=python3
+PACKAGES="flask cock bitcoin"
+
+BIN=$VENV/bin
+PIP=$BIN/pip
+
 
 # REFERENCE
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
@@ -13,10 +23,7 @@ eval_or_print()
 	fi
 }
 
-VENV=flask_env
-PYTHON=python3
-BIN=$VENV/bin
-PIP=$BIN/pip
+
 
 just_print=false
 while [[ $# -gt 0 ]] ; do
@@ -38,5 +45,9 @@ while [[ $# -gt 0 ]] ; do
 	shift
 done
 
+set -o xtrace
 eval_or_print $PYTHON -m venv $VENV
-eval_or_print $PIP install flask
+for pack in $PACKAGES ; do
+	eval_or_print $PIP install $pack
+done
+eval_or_print $PIP install flask-wtf
