@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, send_from_directory
 
-HOST = 'localhost:5000'
+HOST = open('app/host.txt').readline()[:-1]
 
 @app.route('/')
 @app.route('/index')
