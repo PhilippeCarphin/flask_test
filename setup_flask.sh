@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 ###############################################################################
 # Setup variables
 ###############################################################################
 VENV=flask_env
 PYTHON=python3
-PACKAGES="flask cock bitcoin"
+PACKAGES="flask bitcoin flask-wtf"
 
 BIN=$VENV/bin
 PIP=$BIN/pip
@@ -50,4 +50,3 @@ eval_or_print $PYTHON -m venv $VENV
 for pack in $PACKAGES ; do
 	eval_or_print $PIP install $pack
 done
-eval_or_print $PIP install flask-wtf
