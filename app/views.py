@@ -16,3 +16,7 @@ def resume():
 @app.route('/francais/resume_fr_2018.pdf')
 def resume_fr():
     return send_from_directory('..','resume_2018_fr.pdf')
+
+@app.route('/server.jpg')
+def server():
+    return send_from_directory('..','server.jpg')
