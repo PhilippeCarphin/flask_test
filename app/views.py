@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, send_from_directory, request, redirect
+from app.turner import turn_file
 
 HOST = open('app/host.txt').readline()[:-1]
 
@@ -29,7 +30,13 @@ def sgf_turner():
         if 'sgf-file' not in request.files:
             print(''''file' not in request.files''')
             return redirect(request.url)
-        else:
-            print('got filename ' + request.files['sgf-file'].filename)
+
+        sgf_file = request.files['sgf-file']
+        sgf_filename = sgf_file.filename
+        turned_sgf_filename = '.'.join(sgf_filename.split('.')[:-1]) + '_turned.sgf'
+        sgf_file.save(sgf_filename)
+        turn_file(sgf_filename, turned_sgf_filename)
+        print("SGF filename : " + turned_sgf_filename)
+
 
     return render_template('sgf-turner.html')
