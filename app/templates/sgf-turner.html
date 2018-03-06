@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Go Game Turner</title>
+    <title>Rotateur</title>
 </head>
 <body>
-    <H1>Rotateur de fichiers SGF</H1>
+    <H1>Rotateur* de fichiers SGF</H1>
     <p>Vous pouvez envoyer un fichier SGF ici, et je vous le retourne tourné de 180 degrés.</p>
 
     <form method="post" enctype="multipart/form-data">
         <p><input type=file name=sgf-file></p>
         <p><input type=submit value=Upload></p>
     </form>
+
+	<p>Cette application utilise du code de mon application de go
+		<a href=https://github.com/philippecarphin/go_sgf_to_igo_latex>
+			PhilGo
+		</a>
+		pour lire et manipuler le fichier sgf que vous envoyez.</p>
+
+	<p>* Je sais que «Rotateur» n'est pas un mot.</p>
 </body>
 </html>
