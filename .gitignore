@@ -8,3 +8,4 @@ __pycache__
 .idea
 app/host.txt
 nohup.out
+*.sgf
