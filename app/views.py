@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, request, redirect
 
 HOST = open('app/host.txt').readline()[:-1]
 
@@ -20,3 +20,16 @@ def resume_fr():
 @app.route('/server.jpg')
 def server():
     return send_from_directory('..','server.jpg')
+
+
+@app.route('/sgf-turner', methods=['GET', 'POST'])
+def sgf_turner():
+    if request.method == 'POST':
+
+        if 'sgf-file' not in request.files:
+            print(''''file' not in request.files''')
+            return redirect(request.url)
+        else:
+            print('got filename ' + request.files['sgf-file'].filename)
+
+    return render_template('sgf-turner.html')
