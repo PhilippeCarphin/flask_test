@@ -1,3 +1,4 @@
+import os
 from app import app
 from flask import render_template, send_from_directory, request, redirect
 from app.turner import turn_file
@@ -39,7 +40,10 @@ def sgf_turner():
         turn_file(sgf_filename, turned_sgf_filename)
 
         print("SGF filename : " + turned_sgf_filename)
+        os.remove(sgf_filename)
+        ret = send_from_directory('..', turned_sgf_filename, as_attachment=True)
+        os.remove(turned_sgf_filename)
 
-        return send_from_directory('..', turned_sgf_filename, as_attachment=True)
+        return ret
 
     return render_template('sgf-turner.html')
