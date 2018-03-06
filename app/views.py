@@ -36,7 +36,9 @@ def sgf_turner():
         turned_sgf_filename = '.'.join(sgf_filename.split('.')[:-1]) + '_turned.sgf'
         sgf_file.save(sgf_filename)
         turn_file(sgf_filename, turned_sgf_filename)
+
         print("SGF filename : " + turned_sgf_filename)
 
+        return send_from_directory('..', turned_sgf_filename, as_attachment=True)
 
     return render_template('sgf-turner.html')
