@@ -1,0 +1,3 @@
+[submodule "app/go_sgf_to_igo_latex"]
+	path = app/go_sgf_to_igo_latex
+	url = PhilippeCarphin:go_sgf_to_igo_latex

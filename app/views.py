@@ -1,5 +1,8 @@
+import os
 from app import app
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, request, redirect
+from app.turner import turn_file
+from werkzeug.utils import secure_filename
 
 HOST = open('app/host.txt').readline()[:-1]
 
@@ -20,3 +23,27 @@ def resume_fr():
 @app.route('/server.jpg')
 def server():
     return send_from_directory('..','server.jpg')
+
+
+@app.route('/sgf-turner', methods=['GET', 'POST'])
+def sgf_turner():
+    if request.method == 'POST':
+
+        if 'sgf-file' not in request.files:
+            print(''''file' not in request.files''')
+            return redirect(request.url)
+
+        sgf_file = request.files['sgf-file']
+        sgf_filename = secure_filename(sgf_file.filename)
+        turned_sgf_filename = '.'.join(sgf_filename.split('.')[:-1]) + '_turned.sgf'
+        sgf_file.save(sgf_filename)
+        turn_file(sgf_filename, turned_sgf_filename)
+
+        print("SGF filename : " + turned_sgf_filename)
+        os.remove(sgf_filename)
+        ret = send_from_directory('..', turned_sgf_filename, as_attachment=True)
+        os.remove(turned_sgf_filename)
+
+        return ret
+
+    return render_template('sgf-turner.html')
