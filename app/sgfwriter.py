@@ -1,9 +1,4 @@
-import os
-
-import dirs
-import movetree
-import sgfparser
-
+import app.movetree as movetree
 
 def goban_to_sgf(goban_coord):
     char_x = chr(goban_coord[0] + ord('a') - 1)
@@ -120,9 +115,3 @@ def write_sgf_file(tree, file_path):
     with open(file_path, 'w') as f:
         f.write(output)
 
-if __name__ == "__main__":
-    t = sgfparser.make_tree_from_file_name('writer_test_input.sgf')
-    output = write_sgf(t).replace('\n', '')
-    with open(os.path.join(dirs.SGF, 'writer_test_input.sgf'), 'r') as f:
-        expected_output = f.read().replace('\n', '')
-    assert expected_output == output

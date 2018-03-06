@@ -1,9 +1,7 @@
-import os
-import re
 
-import dirs
-import movetree
-from movetree import Move, Info
+import re
+import app.movetree as movetree
+from app.movetree import Move, Info
 
 """ I want all the other files to not have any idea about what SGF is """
 
@@ -171,10 +169,3 @@ def make_info_node(props):
     info.ST = 2  # see sgf reference (2 means no board markup)
     info.handicap = int(props.get('HA', 0))  # (number) I think, haven't looked at the SGF spec for this
     return info
-
-
-if __name__ == "__main__":
-    tree = make_tree_from_file_path(os.path.join(dirs.SGF, 'ShusakuvsInseki.sgf'))
-
-    tree.print()
-    # print(tree.check_ko_legal())
