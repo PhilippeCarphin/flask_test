@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, send_from_directory, request, redirect
 from app.turner import turn_file
+from werkzeug.utils import secure_filename
 
 HOST = open('app/host.txt').readline()[:-1]
 
@@ -32,7 +33,7 @@ def sgf_turner():
             return redirect(request.url)
 
         sgf_file = request.files['sgf-file']
-        sgf_filename = sgf_file.filename
+        sgf_filename = secure_filename(sgf_file.filename)
         turned_sgf_filename = '.'.join(sgf_filename.split('.')[:-1]) + '_turned.sgf'
         sgf_file.save(sgf_filename)
         turn_file(sgf_filename, turned_sgf_filename)
