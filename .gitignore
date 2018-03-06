@@ -7,3 +7,4 @@ __pycache__
 *.pyc
 .idea
 app/host.txt
+nohup.out
