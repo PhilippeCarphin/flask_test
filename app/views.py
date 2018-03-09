@@ -43,9 +43,15 @@ def sgf_turner():
         print('>>> Got sgf file ' + sgf_filename)
         turned_sgf_filename = '.'.join(sgf_filename.split('.')[:-1]) + '_turned.sgf'
         sgf_file.save(sgf_filename)
-        turn_file(sgf_filename, turned_sgf_filename)
+        try:
+            turn_file(sgf_filename, turned_sgf_filename)
+        except Exception as e:
+            os.rename(sgf_filename, sgf_filename + '.failed')
+            print(">>> ERROR === {} === : in turn_file() for file {}{}"
+                    .format(str(e), sgf_filename, '.failed'))
+            return redirect(request.url)
 
-        print(">>> Returning turned sgf file : " + turned_sgf_filename)
+        print(">>> SUCCESS : Returning turned sgf file : " + turned_sgf_filename)
         os.remove(sgf_filename)
         ret = send_from_directory('..', turned_sgf_filename, as_attachment=True)
         os.remove(turned_sgf_filename)

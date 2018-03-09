@@ -9,3 +9,4 @@ __pycache__
 app/host.txt
 nohup.out
 *.sgf
+*.failed
