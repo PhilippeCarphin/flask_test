@@ -1,7 +1,7 @@
 import os
 from app import app
 from flask import render_template, send_from_directory, request, redirect
-from app.turner import turn_file
+from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
 
 HOST = open('app/host.txt').readline()[:-1]
