@@ -6,11 +6,11 @@
 		<h1>Philippe Carphin (under construction)</h1>
 
 		<p>This is my
-		<a href=http://{{host}}/english/resume_en_2018.pdf>resume</a>
+		<a href={{url_for('resume')}}>resume</a>
 		in English</p>
 
 		<p>Ceci est mon
-		<a href=http://{{host}}/francais/resume_fr_2018.pdf>CV</a>
+		<a href={{url_for('resume_fr')}}>CV</a>
 		en français</p>
 
 		<h2>Personal projects</h2>
@@ -39,8 +39,8 @@
 		<h2>About this site</h2>
 
 		<p>This is my server, it's pretty small so don't overload it.</p>
-		<a href=http://{{host}}/server.jpg>
-			<img src=http://{{host}}/server.jpg style="width:400px;height:300px;">
+		<a href={{url_for('server')}}>
+			<img src={{url_for('server')}} style="width:400px;height:300px;">
 		</a>
 
 		<p>This is my first site.  It was made with flask, the source code is at
