@@ -38,7 +38,7 @@ def sgf_turner():
 
         if not sgf_filename.endswith('.sgf'):
             print('''>>> Unaccepted extension for ''' + sgf_filename)
-            return redirect(request.url)
+            return error('''>>> Unaccepted extension for ''' + sgf_filename)
 
         print('>>> Got sgf file ' + sgf_filename)
         turned_sgf_filename = '.'.join(sgf_filename.split('.')[:-1]) + '_turned.sgf'
@@ -49,7 +49,8 @@ def sgf_turner():
             os.rename(sgf_filename, sgf_filename + '.failed')
             print(">>> ERROR === {} === : in turn_file() for file {}{}"
                     .format(str(e), sgf_filename, '.failed'))
-            return redirect(request.url)
+            return error("ERROR === {} === : in turn_file() for file {}{}"
+                    .format(str(e), sgf_filename, '.failed'))
 
         print(">>> SUCCESS : Returning turned sgf file : " + turned_sgf_filename)
         os.remove(sgf_filename)
@@ -59,3 +60,7 @@ def sgf_turner():
         return ret
 
     return render_template('sgf-turner.html')
+
+@app.route('/internal-error')
+def error(message):
+    return render_template('internal-error.html', message=message)
