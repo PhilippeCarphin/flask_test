@@ -8,3 +8,10 @@ body {
 h1,h2,h3 {
 	line-height:1.2
 }
+
+.pic {
+    color:blue;
+    width:70%;
+    align-self:center;
+    margin:auto;
+}
