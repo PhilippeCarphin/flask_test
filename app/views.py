@@ -4,13 +4,11 @@ from flask import render_template, send_from_directory, request, redirect
 from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
 
-HOST = open('app/host.txt').readline()[:-1]
-
 @app.route('/')
 @app.route('/index')
 def index():
     user = {'nickname':'Phil'}
-    return render_template('index.html', host=HOST)
+    return render_template('index.html')
 
 @app.route('/english/resume_en_2018.pdf')
 def resume():

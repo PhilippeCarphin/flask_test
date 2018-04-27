@@ -6,7 +6,7 @@ flask_env
 __pycache__
 *.pyc
 .idea
-app/host.txt
+host.txt
 nohup.out
 *.sgf
 *.failed
