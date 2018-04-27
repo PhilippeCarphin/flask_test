@@ -40,12 +40,15 @@
 		<h2>About this site</h2>
 
 		<p>This is my server, it's pretty small so don't overload it.</p>
-		<div class="pic">
-			<a href={{url_for('server')}}>
-				<img src={{url_for('server')}}
-					 style="width:400px;height:300px;"
-				>
-			</a>
+		<div class="figure">
+			<div style="{display:flex;flex-direction:column">
+				<a href={{url_for('server')}}>
+					<img src={{url_for('server')}}
+						 style="width:400px;height:300px;"
+					>
+				</a>
+				<p>The machine that this site runs on</p>
+			</div>
 		</div>
 		<p>This is my first site.  It was made with flask, the source code is at
 			<a href=https://github.com/philippecarphin/flask_test>flask_test</a>
