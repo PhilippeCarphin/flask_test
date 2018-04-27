@@ -1,3 +1,10 @@
-h1 {
-    color: blue;
+body {
+    max-width:650px;
+    margin:auto;
+	padding:10px;
+	font:"Segoe UI"
+}
+
+h1,h2,h3 {
+	line-height:1.2
 }
