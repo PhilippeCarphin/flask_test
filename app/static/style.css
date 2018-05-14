@@ -45,6 +45,15 @@ aside a {
 .blog-post {
     flex: 1;
     padding: 10px;
+    background-color: beige;
+}
+
+.blog-post h1 {
+    color: darkblue;
+}
+
+.blog-post h2 {
+    text-decoration: underline;
 }
 
 blockquote {
