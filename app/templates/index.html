@@ -4,56 +4,61 @@
 		<link rel="stylesheet" type="text/css" href="static/style.css">
 	</head>
 	<body>
-		<h1>Philippe Carphin (under construction)</h1>
-
-		<p>This is my
-		<a href={{url_for('resume')}}>resume</a>
-		in English</p>
-
-		<p>Ceci est mon
-		<a href={{url_for('resume_fr')}}>CV</a>
-		en français</p>
-
-		<h2>Personal projects</h2>
-
-		<p>My <a href=https://github.com>GitHub</a> page is at <a
-			href=https://github.com/philippecarphin>https://github.com/philippecarphin</a>.
-
-		<p>There's a lot of stuff on there.  Here is a brief description of
-		some of the projects that I have on there.</p>
-
-		<h3><a href=https://github.com/philippecarphin/go_sgf_to_igo_latex>Go
-				application</a></h3>
-		<!-- https://stackoverflow.com/a/8160532/579594 for proper latex symbol-->
-		<p>This application started out as an application to make LaTeX
-		diagrams.  I wanted to save my buddy from doing this tedious work.
-		Later I decided to make it into a GUI application.</p>
-
-		<p>I plan to use this code to make a little web application to rotate an
-		sgf file for people who played a game that was scribed by their
-		opponent.</p>
-
-		<p><a href={{url_for('sgf_turner')}}>This</a> is the work in progres</p>
-
-		<p> More projects to be described soon</p>
-
-		<h2>About this site</h2>
-
-		<p>This is my server, it's pretty small so don't overload it.</p>
-		<div class="figure">
-			<div style="{display:flex;flex-direction:column">
-				<a href={{url_for('server')}}>
-					<img src={{url_for('server')}}
-						 style="width:400px;height:300px;"
-					>
-				</a>
-				<p>The machine that this site runs on</p>
-			</div>
+		<div class="sidebar">
+			sidebar
 		</div>
-		<p>This is my first site.  It was made with flask, the source code is at
-			<a href=https://github.com/philippecarphin/flask_test>flask_test</a>
 
+		<div class="content">
+			<h1>Philippe Carphin (under construction)</h1>
 
+			<p>This is my
+			<a href={{url_for('resume')}}>resume</a>
+			in English</p>
+
+			<p>Ceci est mon
+			<a href={{url_for('resume_fr')}}>CV</a>
+			en français</p>
+
+			<h2>Personal projects</h2>
+
+			<p>My <a href=https://github.com>GitHub</a> page is at <a
+				href=https://github.com/philippecarphin>https://github.com/philippecarphin</a>.
+
+			<p>There's a lot of stuff on there.  Here is a brief description of
+			some of the projects that I have on there.</p>
+
+			<h3><a href=https://github.com/philippecarphin/go_sgf_to_igo_latex>Go
+					application</a></h3>
+			<!-- https://stackoverflow.com/a/8160532/579594 for proper latex symbol-->
+			<p>This application started out as an application to make LaTeX
+			diagrams.  I wanted to save my buddy from doing this tedious work.
+			Later I decided to make it into a GUI application.</p>
+
+			<p>I plan to use this code to make a little web application to rotate an
+			sgf file for people who played a game that was scribed by their
+			opponent.</p>
+
+			<p><a href={{url_for('sgf_turner')}}>This</a> is the work in progres</p>
+
+			<p> More projects to be described soon</p>
+
+			<h2>About this site</h2>
+
+			<p>This is my server, it's pretty small so don't overload it.</p>
+			<div class="figure">
+				<div style="{display:flex;flex-direction:column">
+					<a href={{url_for('server')}}>
+						<img src={{url_for('server')}}
+							 style="width:400px;height:300px;"
+						>
+					</a>
+					<p>The machine that this site runs on</p>
+				</div>
+			</div>
+			<p>This is my first site.  It was made with flask, the source code is at
+				<a href=https://github.com/philippecarphin/flask_test>flask_test</a>
+
+		</div>
 
 
 	</body>
