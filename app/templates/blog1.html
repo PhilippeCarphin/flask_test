@@ -1,0 +1,81 @@
+<H1>Phil's First Blog Post</H1>
+
+<p>This is my first blog post.  In it I will describe how my flask app handles blog posts.</p>
+
+<h2>The idea</h2>
+
+<p>The idea is that I want to write an html blog post with titles and divs and stuff in a way that is decoupled from
+the way that my site works.</p>
+
+<p>That is, I want to be able to write content and put that in a file, as if I was a journalist working for Phil who
+doesn't know anything about style and other tags than the simple ones like 'p', 'h1', 'h2'</p>
+
+<p>I also want to provide other wordpress-like tags like &ltquote&gt and things like <a href="http://scullucs.com">scullucs.com</a> has for displaying code</p>
+
+<h2>How I'm doing it</h2>
+
+I have a python route
+<pre><code class="python">
+    @app.route('/blog')
+    def blog():
+        return render_template('blog_post.html')
+</code></pre>
+that returns file blog_post.html that has looks like this:
+<pre><code class="html">
+    &lthtml&gt
+        &lthead&gt
+            &lttitle&gt{ title }&lt/title&gt
+            &ltlink rel="stylesheet" type="text/css" href="static/style.css"&gt
+        &lt/head&gt
+        &ltbody&gt
+            &ltdiv class="flex-container"&gt
+
+                { % include "sidebar.html" ignore missing % }
+
+
+                &ltdiv class="blog-post"&gt
+                    { % include "blog1.html" % }
+                &lt/div&gt
+            &lt/div&gt
+
+        &lt/body&gt
+    &lt/html&gt
+</code></pre>
+
+
+<p>So content is in blog1.html and the framing device is in blog_post.html</p>
+
+<h2>Further work</h2>
+
+The problem that I have right now is that I can't parametrize the filename "blog1.html".
+
+What I would like to do is be able to modify blog_post.html like this:
+<pre><code class="html">
+    &lthtml&gt
+        &lthead&gt
+            &lttitle&gt{ title }&lt/title&gt
+            &ltlink rel="stylesheet" type="text/css" href="static/style.css"&gt
+        &lt/head&gt
+        &ltbody&gt
+            &ltdiv class="flex-container"&gt
+
+                { % include "sidebar.html" ignore missing % }
+
+
+                &ltdiv class="blog-post"&gt
+                    { % include { {the_post} } % }
+                &lt/div&gt
+            &lt/div&gt
+
+        &lt/body&gt
+    &lt/html&gt
+</code></pre>
+
+and modify the route like this:
+<pre><code class="python">
+    @app.route('/blog')
+    def blog():
+        return render_template('blog_post.html', the_post='blog1.html')
+</code></pre>
+
+which would allow me to use blog_post.html for more than one hardcoded blog post contained in blog1.html.

@@ -42,4 +42,7 @@ h1,h2,h3 {
     padding: 10px;
 }
 
+.blog-post {
+    flex: 1;
+    padding: 10px;
 }
