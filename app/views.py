@@ -22,6 +22,13 @@ def resume_fr():
 def server():
     return send_from_directory('..','server.jpg')
 
+@app.route('/blog')
+def blog():
+    return render_template('blog_post.html')
+
+@app.route('/apps')
+def apps():
+    return render_template('apps.html')
 
 @app.route('/sgf-turner', methods=['GET', 'POST'])
 def sgf_turner():

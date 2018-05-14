@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>{{ title }} - Phil-Flask-app</title>
+		<link rel="stylesheet" type="text/css" href="static/style.css">
+	</head>
+	<body>
+		<div class="flex-container">
+
+			{% include "sidebar.html" ignore missing %}
+
+            <div class="basic">
+                <h1>Apps</h1>
+
+                <a href={{url_for('sgf_turner')}}>sgf_turner</a>
+            </div>
+
+		</div>
+
+	</body>
+</html>
