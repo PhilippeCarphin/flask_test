@@ -1,3 +1,4 @@
+#!/bin/bash
 if ! ssh -f pi 'pushd ~/Documents/GitHub/flask_test ; ./sync-and-restart.sh' ;
 then
     echo 'please make sure host named pi is defined in
