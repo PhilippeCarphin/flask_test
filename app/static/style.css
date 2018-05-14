@@ -20,6 +20,9 @@ h1,h2,h3 {
 
 .sidebar {
     flex: 1;
+    max-width: 150px;
+    width: wrap_content;
+    padding: 10px;
     background-color:grey;
 }
 
