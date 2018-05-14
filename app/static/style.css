@@ -21,7 +21,7 @@ h1,h2,h3 {
 
 .content {
     max-width:650px;
-    margin:0px;
+    margin:auto;
 	padding:10px;
 	font:"Segoe UI"
 }
