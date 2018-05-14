@@ -46,3 +46,20 @@ h1,h2,h3 {
     flex: 1;
     padding: 10px;
 }
+
+blockquote {
+    flex: 1;
+	margin:1.75em .875em 1.75em 0em;
+	padding:0 0 0 1.75em;
+	font-family:Georgia,"Times New Roman",serif;
+	font-style:italic;
+	border:solid #0087be;
+	border-width:0 0 0 3px
+}
+
+blockquote cite{
+    display:block;
+    margin-top:.875em;
+    font-size:.875em;
+    font-weight:700
+}

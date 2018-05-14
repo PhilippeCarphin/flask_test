@@ -10,7 +10,10 @@ the way that my site works.</p>
 <p>That is, I want to be able to write content and put that in a file, as if I was a journalist working for Phil who
 doesn't know anything about style and other tags than the simple ones like 'p', 'h1', 'h2'</p>
 
-<p>I also want to provide other wordpress-like tags like &ltquote&gt and things like <a href="http://scullucs.com">scullucs.com</a> has for displaying code</p>
+<p>I also want to provide other wordpress-like tags like &ltblockquote&gt and things like
+    <a href="http://scullucs.com">scullucs.com</a> has for displaying code.</p>
+
+<p>This way, I can write content with pre-made tags and classes that will abstract away some elements of style.</p>
 
 <h2>How I'm doing it</h2>
 
@@ -79,3 +82,42 @@ and modify the route like this:
 </code></pre>
 
 which would allow me to use blog_post.html for more than one hardcoded blog post contained in blog1.html.
+
+<h2>Sandbox</h2>
+
+Here I'm just trying to emulate the blockquote thing from wordpress.
+<blockquote>
+    There's more than one way to skin a cat.
+    <cite>Some guy</cite>
+</blockquote>
+
+This is using the following html:
+<pre><code class="html">
+    &ltblockquote&gt
+        There's more than one way to skin a cat.
+        &ltcite&gtSome guy&lt/cite&gt
+    &lt/blockquote&gt
+</code></pre>
+
+with the following CSS:
+<pre><code class="html">
+    blockquote {
+        flex: 1;
+        margin:1.75em .875em 1.75em 0em;
+        padding:0 0 0 1.75em;
+        font-family:Georgia,"Times New Roman",serif;
+        font-style:italic;
+        border:solid #0087be;
+        border-width:0 0 0 3px
+    }
+
+    blockquote cite{
+        display:block;
+        margin-top:.875em;
+        font-size:.875em;
+        font-weight:700
+    }
+</code></pre>
+
+I don't really like this but I will change the CSS and this blockquote will change automatically when I change the
+CSS and my fictitious journalist will hot have anything to do.
