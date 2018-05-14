@@ -15,6 +15,7 @@ h1,h2,h3 {
 
 .sidebar {
     flex: 0 0 12em;
+    order: -1; /* Specify the placement of the sidebar to the left (-1) or to the right (1) */
     background-color:grey;
 }
 
