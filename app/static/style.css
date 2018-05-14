@@ -23,8 +23,12 @@ h1,h2,h3 {
     flex-direction:column;
     max-width: 150px;
     width: wrap_content;
-    padding: 10px;
     background-color:lightgrey;
+}
+
+.sidebar a {
+    text-decoration: none;
+    padding: 8px 8px 8px 8px;
 }
 
 .content {
@@ -32,4 +36,5 @@ h1,h2,h3 {
     margin:auto;
 	padding:10px;
 	font:"Segoe UI"
+}
 }
