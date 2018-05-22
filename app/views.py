@@ -4,6 +4,25 @@ from flask import render_template, send_from_directory, request, redirect
 from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
 
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
+    remember = BooleanField('Remember me')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        return '<H1>' + form.username.data + ' ' + form.password.data + '</H1>'
+
+    return render_template('login_page.html', form=form)
+
+
 @app.route('/')
 @app.route('/index')
 def index():
