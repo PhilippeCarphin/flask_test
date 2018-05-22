@@ -3,6 +3,7 @@ from app import app
 from flask import render_template, send_from_directory, request, redirect
 from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 from app.model import User, db
 
 from flask_wtf import FlaskForm
@@ -26,7 +27,7 @@ def register_user():
         new_user = User(
             username=register_form.username.data,
             email=register_form.email.data,
-            password=register_form.password.data
+            password=generate_password_hash(register_form.password.data, method='sha256')
         )
         db.session.add(new_user)
         db.session.commit()
