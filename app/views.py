@@ -3,6 +3,7 @@ from app import app
 from flask import render_template, send_from_directory, request, redirect
 from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
+from app.model import User, db
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
@@ -12,6 +13,25 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField('Remember me')
+
+class RegisterForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
+    email = StringField('Email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
+
+@app.route('/register', methods=['GET', 'POST'])
+def register_user():
+    register_form = RegisterForm()
+    if register_form.validate_on_submit():
+        new_user = User(
+            username=register_form.username.data,
+            email=register_form.email.data,
+            password=register_form.password.data
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return '<H1> Registered username='+new_user.username+' email='+new_user.email+'</H1>'
+    return render_template('register_page.html', form=register_form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
