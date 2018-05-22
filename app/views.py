@@ -81,7 +81,7 @@ def login():
 @app.route('/protected')
 @login_required
 def protected_route():
-    return 'Protected Route'
+    return 'You are logged in'
 
 
 @app.route('/')
