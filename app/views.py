@@ -1,15 +1,24 @@
 import os
 from app import app
-from flask import render_template, send_from_directory, request, redirect
+import flask
+from flask import render_template, send_from_directory, request, redirect, url_for
 from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from app.model import User, db
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 
+login_manager=LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
@@ -19,6 +28,7 @@ class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
     email = StringField('Email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
@@ -34,10 +44,13 @@ def register_user():
         return '<H1> Registered username='+new_user.username+' email='+new_user.email+'</H1>'
     return render_template('register_page.html', form=register_form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'GET' or not form.validate_on_submit():
+        print(request.args.get('next'))
+        next = request.args.get('next')
         return render_template('login_page.html', form=form)
     user = User.query.filter_by(username=form.username.data).first()
     if user is None:
@@ -46,7 +59,16 @@ def login():
     if not check_password_hash(user.password, form.password.data):
         return render_template('login_page.html', form=form, message='invalid password')
 
-    return '<H1>' + 'Login conditions verified for user '+ form.username.data + '</H1>'
+    login_user(user)
+
+    return redirect(url_for('protected_route'))
+
+
+@app.route('/protected')
+@login_required
+def protected_route():
+    return 'Protected Route'
+
 
 @app.route('/')
 @app.route('/index')
