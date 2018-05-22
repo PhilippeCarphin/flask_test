@@ -83,10 +83,10 @@ def protected_route():
         current_user.username,
         current_user.email,
         current_user.password
-    ) + '<form class="form-signin" method="POST" action="/index"><button type="submit">Index</button>'
+    ) + '<form class="form-signin" method="GET" action="/index"><button type="submit">Index</button>'
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
     return redirect(url_for('apps'))
