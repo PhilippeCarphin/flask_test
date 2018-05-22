@@ -23,14 +23,4 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(80))
 
 
-@app.route('/testlogin')
-def test_login():
-    result = User.query.filter_by(username='Phil')
-    print(result)
-    user = result.first()
-
-    if user is None:
-        return 'No user named Phil'
-    print(user)
-    return '<H1>' + 'There is a user with username=Phil with id=' + str(user.id) + '</H1>'
 
