@@ -18,7 +18,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -62,8 +61,6 @@ def register_user():
 def login():
     form = LoginForm()
     if request.method == 'GET' or not form.validate_on_submit():
-        print(request.args.get('next'))
-        next = request.args.get('next')
         return render_template('login_page.html', form=form)
     user = User.query.filter_by(username=form.username.data).first()
     if user is None:
@@ -81,7 +78,18 @@ def login():
 @app.route('/protected')
 @login_required
 def protected_route():
-    return 'You are logged in'
+    print(current_user.get_id())
+    return 'You are logged in, username={} email={} password_hash={}'.format(
+        current_user.username,
+        current_user.email,
+        current_user.password
+    ) + '<form class="form-signin" method="POST" action="/index"><button type="submit">Index</button>'
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return redirect(url_for('apps'))
 
 
 @app.route('/')
