@@ -108,16 +108,3 @@ def sgf_turner():
 @app.route('/internal-error')
 def error(message):
     return render_template('internal-error.html', message=message)
-
-
-@app.route('/testlogin')
-def test_login():
-    result = User.query.filter_by(username='Phil')
-    print(result)
-    user = result.first()
-
-    if user is None:
-        return 'No user named Phil'
-    print(user)
-    return '<H1>' + 'There is a user with username=Phil with id=' + str(user.id) + '</H1>'
-

@@ -16,14 +16,8 @@ then in sqlite3, you can do
 and you should see 'user'$(tput sgr 0)"
 sqlite3 database.db
 
-echo "$(tput setaf 3)PHIL: In order to user the /testlogin route,
-do this in the python REPL:
-from app import db, User
-phil = User(username='Phil')
-db.session.add(phil)
-db.session.commit()
-res = User.query.all()
-res[0].username$(tput sgr 0)"
-./flask_env/bin/python
-echo "$(tput setaf 2)You should see 'Phil' and if you go to the /testlogin page,
-you should now see 'There is a user with username=Phil'.$(tput sgr 0)"
+echo "$(tput setaf 3)PHIL: To test, go to '/register', enter valid stuff, and
+click register.  You should be able to go into sqlite3 and see that data when
+you do
+select * from user;$(tput sgr 0)"
+sqlite3 database.db
