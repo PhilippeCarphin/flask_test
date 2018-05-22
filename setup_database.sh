@@ -14,7 +14,7 @@ echo "$(tput setaf 2)PHIL: If there are no errors after db.create_all(),
 then in sqlite3, you can do
 .tables
 and you should see 'user'$(tput sgr 0)"
-sqlite3
+sqlite3 database.db
 
 echo "$(tput setaf 3)PHIL: In order to user the /testlogin route,
 do this in the python REPL:
