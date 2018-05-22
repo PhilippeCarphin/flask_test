@@ -4,7 +4,7 @@
 ###############################################################################
 VENV=flask_env
 PYTHON=python3
-PACKAGES="flask bitcoin flask-wtf flask-sqlalchemy"
+PACKAGES="flask bitcoin flask-wtf flask-sqlalchemy flask-bootstrap flask-login"
 
 BIN=$VENV/bin
 PIP=$BIN/pip
