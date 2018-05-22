@@ -10,3 +10,4 @@ host.txt
 nohup.out
 *.sgf
 *.failed
+*.db
