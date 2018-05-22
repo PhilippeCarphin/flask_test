@@ -37,12 +37,16 @@ def register_user():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if request.method == 'GET' or not form.validate_on_submit():
+        return render_template('login_page.html', form=form)
+    user = User.query.filter_by(username=form.username.data).first()
+    if user is None:
+        return 'No user with name ' + form.username.data
 
-    if form.validate_on_submit():
-        return '<H1>' + form.username.data + ' ' + form.password.data + '</H1>'
+    if not check_password_hash(user.password, form.password.data):
+        return render_template('login_page.html', form=form, message='invalid password')
 
-    return render_template('login_page.html', form=form)
-
+    return '<H1>' + 'Login conditions verified for user '+ form.username.data + '</H1>'
 
 @app.route('/')
 @app.route('/index')
