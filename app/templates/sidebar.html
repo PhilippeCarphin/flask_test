@@ -1,5 +1,9 @@
 <aside>
-    {{ extra }}
+    <div class="current_user_style">
+    {% if current_user.is_authenticated %}
+    {{ current_user.username }}
+    {% endif %}
+    </div>
     <a href={{url_for('index')}}>Home</a>
     <a href={{url_for('blog')}}>Blog</a>
     <a href={{url_for('apps')}}>Apps</a>

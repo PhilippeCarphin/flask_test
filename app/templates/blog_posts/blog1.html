@@ -1,3 +1,6 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="blog-post"/>
 <H1>Phil's First Blog Post</H1>
 
 <p>This is my first blog post.  In it I will describe how my flask app handles blog posts.</p>
@@ -28,7 +31,9 @@ that returns file blog_post.html that has looks like this:
     &lthtml&gt
         &lthead&gt
             &lttitle&gt{ title }&lt/title&gt
-            &ltlink rel="stylesheet" type="text/css" href="static/style.css"&gt
+            &ltlink rel="stylesheet"
+                   type="text/css"
+                   href="static/style.css"&gt
         &lt/head&gt
         &ltbody&gt
             &ltdiv class="flex-container"&gt
@@ -57,7 +62,10 @@ What I would like to do is be able to modify blog_post.html like this:
     &lthtml&gt
         &lthead&gt
             &lttitle&gt{ title }&lt/title&gt
-            &ltlink rel="stylesheet" type="text/css" href="static/style.css"&gt
+            &ltlink
+                rel="stylesheet"
+               type="text/css"
+               href="static/style.css"&gt
         &lt/head&gt
         &ltbody&gt
             &ltdiv class="flex-container"&gt
@@ -78,7 +86,7 @@ and modify the route like this:
 <pre><code class="python">
     @app.route('/blog')
     def blog():
-        return render_template('blog_post.html', the_post='blog1.html')
+        return render_template('blog_post.html')
 </code></pre>
 
 which would allow me to use blog_post.html for more than one hardcoded blog post contained in blog1.html.
@@ -121,3 +129,5 @@ with the following CSS:
 
 I don't really like this but I will change the CSS and this blockquote will change automatically when I change the
 CSS and my fictitious journalist will hot have anything to do.
+</div>
+{% endblock %}
