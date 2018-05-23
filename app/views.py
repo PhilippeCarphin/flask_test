@@ -8,11 +8,9 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, \
     current_user
-from app.model import User, db
 
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, Length
+from app.model import User, db
+from app.forms import RegisterForm, LoginForm
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -21,24 +19,6 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
-
-class LoginForm(FlaskForm):
-    username = StringField('Username',
-                           validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('Password', validators=[InputRequired(),
-                                                     Length(min=8, max=80)])
-    remember = BooleanField('Remember me')
-
-
-class RegisterForm(FlaskForm):
-    username = StringField('Username',
-                           validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('Password', validators=[InputRequired(),
-                                                     Length(min=8, max=80)])
-    email = StringField('Email', validators=[InputRequired(),
-                                             Email(message='Invalid email'),
-                                             Length(max=50)])
 
 
 @app.route('/register', methods=['GET', 'POST'])
