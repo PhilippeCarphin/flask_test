@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Rotateur</title>
-</head>
-<body>
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="blog-post">
     <H1>Rotateur* de fichiers SGF</H1>
     <p>Vous pouvez envoyer un fichier SGF ici, et je vous le retourne tourné de 180 degrés.</p>
 
@@ -18,5 +14,5 @@
 		pour lire et manipuler le fichier sgf que vous envoyez.</p>
 
 	<p><font size=2>* Je sais que «Rotateur» n'est pas un mot.</font></p>
-</body>
-</html>
+</div>
+{% endblock %}

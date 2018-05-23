@@ -1,21 +1,8 @@
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>{{ title }} - Phil-Flask-app</title>
-		<link rel="stylesheet" type="text/css" href="static/style.css">
-	</head>
-	<body>
-		<div class="flex-container">
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="basic">
+	<h1>Apps</h1>
 
-			{% include "sidebar.html" ignore missing %}
-
-            <div class="basic">
-                <h1>Apps</h1>
-
-                <a href={{url_for('sgf_turner')}}>sgf_turner</a>
-            </div>
-
-		</div>
-
-	</body>
-</html>
+	<a href={{url_for('sgf_turner')}}>sgf_turner</a>
+</div>
+{% endblock %}
