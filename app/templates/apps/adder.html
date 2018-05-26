@@ -1,0 +1,12 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="blog-post">
+    <H1>Additionneur</H1>
+    <p>Vous pouvez envoyer un fichier texte avec un nombre sur chaque ligne et je vais calculer la somme.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        <p><input type=file name=to_add></p>
+        <p><input type=submit value=Additionner> Voir la somme des nombres du fichier</p>
+    </form>
+</div>
+{% endblock %}

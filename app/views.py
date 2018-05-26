@@ -3,6 +3,9 @@ from app import app
 import flask
 from flask import render_template, send_from_directory, request, redirect, \
     url_for
+
+from app.adder import add_file
+
 from app.go_sgf_to_igo_latex.src.turner import turn_file
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -148,3 +151,35 @@ def sgf_turner():
 @app.route('/internal-error')
 def error(message):
     return render_template('internal-error.html', message=message)
+def handle_add_request(request):
+    if 'to_add' not in request.files:
+        print('''>>>'file' not in request.files''')
+        return redirect(request.url)
+
+    to_add = request.files['to_add']
+    to_add_filename = secure_filename(to_add.filename) + 'phil'
+
+    to_add.save(to_add_filename)
+
+    sum = 0
+    try:
+        sum = add_file(to_add_filename)
+    except Exception as e:
+        os.rename(to_add_filename, to_add_filename + '.failed')
+        print(">>> ERROR === {} === : in adder() for file {}{}"
+              .format(str(e), to_add_filename, '.failed'))
+        return error("ERROR === {} === : in turn_file() for file {}{}"
+                     .format(str(e), to_add_filename, '.failed'))
+
+    print(
+        ">>> SUCCESS : Returning summing file : " + to_add_filename)
+    os.remove(to_add_filename)
+    return 'File adder, sum = ' + str(sum)
+
+
+@app.route('/apps/adder', methods=['GET', 'POST'])
+def adder():
+    if request.method == 'POST':
+        return handle_add_request(request)
+
+    return render_template('apps/adder.html')
