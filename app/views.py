@@ -177,7 +177,7 @@ def handle_add_request(request):
     return 'File adder, sum = ' + str(sum)
 
 
-@app.route('/apps/adder', methods=['GET', 'POST'])
+@app.route('/adder', methods=['GET', 'POST'])
 def adder():
     if request.method == 'POST':
         return handle_add_request(request)
