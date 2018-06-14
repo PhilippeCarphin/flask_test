@@ -183,3 +183,12 @@ def adder():
         return handle_add_request(request)
 
     return render_template('apps/adder.html')
+
+
+@app.route('/info', methods=['GET'])
+@login_required
+def info():
+    if current_user.username not in ['phil', 'paul', 'maman']:
+        return error("Access denied for user " + current_user.username)
+
+    return render_template('private_info.html')
