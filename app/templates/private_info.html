@@ -1,0 +1,21 @@
+{% extends "main_layout.html" %}
+{% block content %}
+<div class="content">
+	<h1>Informations particulières</h1>
+
+    <h2>Comment faire marcher le foyer</h2>
+
+    Voici une image
+	<div class="figure">
+		<div style="{display:flex;flex-direction:column">
+			<a href={{url_for('server')}}>
+				<img src={{url_for('server')}}
+					 style="width:400px;height:300px;"
+				>
+			</a>
+			<p>The machine that this site runs on</p>
+		</div>
+	</div>
+
+</div>
+{% endblock %}
