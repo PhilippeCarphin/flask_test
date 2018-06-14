@@ -4,6 +4,8 @@ import flask
 from flask import render_template, send_from_directory, request, redirect, \
     url_for
 
+from sqlalchemy.exc import SQLAlchemyError, InvalidRequestError
+
 from app.adder import add_file
 
 from app.go_sgf_to_igo_latex.src.turner import turn_file
@@ -34,9 +36,21 @@ def register_user():
             password=generate_password_hash(register_form.password.data,
                                             method='sha256')
         )
-        db.session.add(new_user)
-        db.session.commit()
-        return '<H1> Registered username=' + new_user.username + ' email=' + new_user.email + '</H1>'
+
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+        except SQLAlchemyError:
+            db.session.rollback()
+            return error("SQLAlchemyError when inserting user {}".format(new_user.username))
+
+        login_user(new_user)
+        return 'You are logged in, username={} email={} password_hash={}'.format(
+                current_user.username,
+                current_user.email,
+                current_user.password
+        ) + '<form class="form-signin" method="GET" action="/index"><button type="submit">Index</button>'
+
     return render_template('register_page.html', form=register_form)
 
 
