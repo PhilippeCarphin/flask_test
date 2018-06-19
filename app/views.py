@@ -23,11 +23,15 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@app.route('/internal-error')
+def error(message):
+    return render_template('internal-error.html', message=message)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
     register_form = RegisterForm()
     if register_form.validate_on_submit():
+
         new_user = User(
             username=register_form.username.data,
             email=register_form.email.data,
@@ -148,9 +152,7 @@ def sgf_turner():
     return render_template('apps/sgf-turner.html')
 
 
-@app.route('/internal-error')
-def error(message):
-    return render_template('internal-error.html', message=message)
+
 def handle_add_request(request):
     if 'to_add' not in request.files:
         print('''>>>'file' not in request.files''')
@@ -192,3 +194,16 @@ def info():
         return error("Access denied for user " + current_user.username)
 
     return render_template('private_info.html')
+
+
+@app.route('/phil')
+@login_required
+def admin():
+    result = db.engine.execute('SELECT * FROM user;')
+    string_result = "<table>"
+    for row in result:
+        string_result += '<tr>'\
+                          + '<td>'+str(row[0])+'</td><td>'+row[1]+'</td><td>'+row[2]+'</td><td>'+row[3]+'</td>'\
+                         + '</tr>'
+    string_result += '</table>'
+    return string_result

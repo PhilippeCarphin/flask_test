@@ -3,7 +3,7 @@ from app import app
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/pi/Documents/GitHub/flask_test/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/pcarphin/Documents/GitHub/flask_test/database.db'
 app.config['SECRET_KEY'] = 'thisissecret'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)

@@ -12,5 +12,34 @@
         <tr><td>Password</td><td>Reversa220</td></tr>
     </table>
 
+    <h2>Extra info</h2>
+
+    Any info can be added by editing the following Google Doc:
+
+    <a href="https://docs.google.com/document/d/1crsIVGH-fGD_Dz3aPdsDBN4xaj8FmzZxVmQ80F8jX80/edit?usp=sharing">
+        Extra_Info_Google_Doc
+    </a>
+
+    <p>Please note that although a login was required to access this page, the google doc above is not password protected.
+
+    <p>Also note that this site, although it is secure in the login form, it is not protected by HTTPS.  What this means is that it is vulnerable to impersonation attacks and man-in-the-middle attacks.
+
+    <p>The impersonation attack is that an attacker could pretend to be this site and you wouldn't be able to tell: this is because websites live at IP(internet protocol) adresses like 65.92.193.251 (which is my apartment's IP address).  Google.ca lives at it's IP adress, actually it has more than one.  The DNS (domain name resolution) is a service that takes domain names and gives you IP addresses.  I have registered philippe-carphin.ca with a registrar so that DNS services will return the IP where my website is hosted when someone enters philippe-carphin.ca in their address bar.
+
+    <p>So when you write bmo.ca in the address bar, you have to be really sure that you're in fact connecting to BMO.  HTTPS enables encrypted traffic between you and HTTPS-enabled sites.  One thing that it also does is authenticate the site as well.
+
+    <p>With HTTPS, a certificate authority will certify that a certain public key is really the public key of a certain site.  You may therefore use that public key to encrypt data meant for that site with the knowledge that only that site will be able to decrypt your data.
+
+    <p>This gives two things:
+
+    <ol>
+        <li>You know that the site you are seeing is indeed the site you think you are seeing</li>
+        <li>You know that communication between you and the site is encrypted and that any person intercepting communications cannot decypher them.</li>
+    </ol>
+
+    <p>My site does not use HTTPS so it is vulnerable to impersonation and traffic between you and my site is liable to be intercepted and read.
+
+    <p>Digital security is all about managing risk.  The risk that someone might impersonate my site is pretty low.  The risk that someone intercepts internet traffic between you and this site is also quite low.  Beyond that, my password storage is within the norm of internet security, I do not store your password.  You can go on <a href="{{ url_for('admin') }}">database content</a> to see what I do with your password.  I take it, feed it to a calculation and remember the result of the calculation.  This is how I validate passwords without knowing them:  when you sign in, I take the password that you feed into the form.  I do the calculation on it, and if it gives the same result, this validates the password.
+
 </div>
 {% endblock %}
