@@ -1,10 +1,14 @@
 #!flask_env/bin/python
-
 from app import app
+import os
 
-HOST = open('host.txt').readline()[:-1]
 
-if HOST == 'localhost:5000':
-    app.run(debug=True)
+if os.path.exists('host.txt'):
+    """ Should have a file that reads the host and port from a file """
+    with open('host.txt', 'r') as f:
+        host=f.readline().split('=')[1].strip('\n')
+        port=f.readline().split('=')[1].strip('\n')
+    app.run(host=host, port=port)
 else:
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
+

@@ -1,9 +1,16 @@
 
+import os
 from app import app
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/pcarphin/Documents/GitHub/flask_test/database.db'
+def dbpath():
+    this_file = os.path.abspath(__file__)
+    this_dir = os.path.dirname(this_file)
+    print("this_dir=" + this_dir)
+    return os.path.join(this_dir, '..', 'database.db')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + dbpath()
 app.config['SECRET_KEY'] = 'thisissecret'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
