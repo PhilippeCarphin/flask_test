@@ -1,4 +1,4 @@
-#!flask_env/bin/python
+#!/usr/bin/env python
 from app import app
 import os
 
@@ -10,5 +10,5 @@ if os.path.exists('host.txt'):
         port=f.readline().split('=')[1].strip('\n')
     app.run(host=host, port=port)
 else:
-    app.run(host='0.0.0.0', debug=True)
+    app.run()
 
